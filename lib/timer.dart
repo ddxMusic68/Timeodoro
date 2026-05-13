@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'dart:async';
 
-
-
-
 abstract class TimerInterface with ChangeNotifier {
   final Duration duration;
   final VoidCallback onComplete;

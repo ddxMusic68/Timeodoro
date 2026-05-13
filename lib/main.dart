@@ -38,7 +38,6 @@ class MainApp extends StatelessWidget {
 
   MainApp({super.key});
 
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(create: (_) => CurrentIndex(pages: 3), 
@@ -51,6 +50,7 @@ class MainApp extends StatelessWidget {
               WorkPage(),
               RestPage(),
               NotesPage(),
+              SettingsPage(),
             ],
         ),
         floatingActionButton: Column(
@@ -65,7 +65,7 @@ class MainApp extends StatelessWidget {
             SizedBox(height: 10),
             FloatingActionButton(
               onPressed: () {
-                currentIndex.setIndex(2);
+                currentIndex.setIndex(3);
               },
               child: Icon(Icons.settings),
             )
