@@ -35,6 +35,12 @@ class SettingsPage extends StatelessWidget {
               FilteringTextInputFormatter.digitsOnly,
             ],
           ),
+          ElevatedButton(
+            onPressed: () {
+              // Handle save settings action
+            },
+            child: Text('Save Settings'),
+          )
         ]
       );
   }
