@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../json.dart';
+
 class SettingsPage extends StatelessWidget {
-  const SettingsPage({super.key});
+  final TextEditingController pages = TextEditingController();
+  final TextEditingController workTime = TextEditingController();
+  final TextEditingController restTime = TextEditingController();
+  final TextEditingController notesTime = TextEditingController();
+
+  SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) { 
     return Column (
         children: [
           TextField(
+            controller: pages,
             decoration: InputDecoration(
               labelText: 'Work Time (minutes)',
             ),
@@ -18,6 +26,7 @@ class SettingsPage extends StatelessWidget {
             ],
           ),
           TextField(
+            controller: restTime,
             decoration: InputDecoration(
               labelText: 'Rest Time (minutes)',
             ),
@@ -27,6 +36,7 @@ class SettingsPage extends StatelessWidget {
             ],
           ),
           TextField(
+            controller: notesTime,
             decoration: InputDecoration(
               labelText: 'Notes Time (minutes)',
             ),
@@ -37,7 +47,12 @@ class SettingsPage extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              // Handle save settings action
+              saveSettings({
+                "screens": int.parse(pages.text),
+                "work_time": int.parse(workTime.text),
+                "rest_time": int.parse(restTime.text),
+                "notes_time": int.parse(notesTime.text),
+              });
             },
             child: Text('Save Settings'),
           )

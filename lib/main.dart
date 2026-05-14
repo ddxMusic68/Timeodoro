@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:timodoro/pages/work.dart';
-import 'package:timodoro/pages/rest.dart';
 import 'package:timodoro/pages/settings.dart';
-import 'package:timodoro/pages/notes.dart';
+import 'package:timodoro/page.dart';
 
 void main() {
   runApp(
@@ -47,9 +45,21 @@ class MainApp extends StatelessWidget {
           body: IndexedStack(
             index: currentIndex.index,
             children: [
-              WorkPage(),
-              RestPage(),
-              NotesPage(),
+              BasePage(
+                title: "Work Time",
+                instructions: "Focus on your task until the timer runs out.",
+                timeKey: "work",
+              ),
+              BasePage(
+                title: "Notes Time",
+                instructions: "Write down any thoughts or ideas you have.",
+                timeKey: "notes",
+              ),
+              BasePage(
+                title: "Rest Time",
+                instructions: "Take a break and relax until the timer runs out.",
+                timeKey: "rest",
+              ),
               SettingsPage(),
             ],
         ),
