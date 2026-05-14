@@ -2,34 +2,9 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:path_provider/path_provider.dart';
 
-class Settings {
-  final String theme;
-  final String language;
-  final bool notifications;
-  final int defaultTimerMinutes;
-
-  Settings({
-    required this.theme,
-    required this.language,
-    required this.notifications,
-    required this.defaultTimerMinutes,
-  });
-
-  Map<String, dynamic> toJson() => {
-    "theme": theme,
-    "language": language,
-    "notifications": notifications,
-    "defaultTimerMinutes": defaultTimerMinutes,
-  };
-
-  factory Settings.fromJson(Map<String, dynamic> json) {
-    return Settings(
-      theme: json["theme"],
-      language: json["language"],
-      notifications: json["notifications"],
-      defaultTimerMinutes: json["defaultTimerMinutes"],
-    );
-  }
+void main() async {
+  final settings = await loadSettings();
+  print(settings);
 }
 
 const Map<String, dynamic> defaultSettings = {

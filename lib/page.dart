@@ -8,17 +8,19 @@ class BasePage extends StatelessWidget {
   final String title;
   final String instructions;
   final String timeKey;
+  final int defaultTime;
 
   const BasePage({
     super.key,
     required this.title,
     required this.instructions,
     required this.timeKey,
+    required this.defaultTime,
   });
 
   Future<int> loadTime() async {
     final settings = await loadSettings();
-    return settings[timeKey];
+    return settings[timeKey] ?? defaultTime;
   }
 
   @override
@@ -40,7 +42,7 @@ class BasePage extends StatelessWidget {
                   ),
                   CountdownTimerWidget(
                     timer: CountdownTimer(
-                      duration: Duration(minutes: restTime),
+                      duration: Duration(seconds: restTime),
                       onComplete: () {
                         currentIndex.next();
                       },

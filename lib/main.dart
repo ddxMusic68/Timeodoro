@@ -48,17 +48,20 @@ class MainApp extends StatelessWidget {
               BasePage(
                 title: "Work Time",
                 instructions: "Focus on your task until the timer runs out.",
-                timeKey: "work",
+                timeKey: "work_time",
+                defaultTime: 20,
               ),
               BasePage(
                 title: "Notes Time",
                 instructions: "Write down any thoughts or ideas you have.",
-                timeKey: "notes",
+                timeKey: "notes_time",
+                defaultTime: 5,
               ),
               BasePage(
                 title: "Rest Time",
                 instructions: "Take a break and relax until the timer runs out.",
-                timeKey: "rest",
+                timeKey: "rest_time",
+                defaultTime: 10,
               ),
               SettingsPage(),
             ],
