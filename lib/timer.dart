@@ -4,13 +4,15 @@ import 'dart:async';
 
 abstract class TimerInterface with ChangeNotifier {
   final Duration duration;
-  final VoidCallback onComplete;
+  final VoidCallback? onStart;
+  final VoidCallback? onComplete;
   late Duration remainingTime;
   bool isRunning = false;
 
   TimerInterface({
       required this.duration,
-      required this.onComplete
+      required this.onComplete,
+      required this.onStart
     }) : remainingTime = duration;
 
   void start();
@@ -21,11 +23,12 @@ abstract class TimerInterface with ChangeNotifier {
 class CountdownTimer extends TimerInterface {
   Timer? _timer;
 
-  CountdownTimer({required super.duration, required super.onComplete});
+  CountdownTimer({required super.duration, required super.onComplete, required super.onStart});
 
   @override
   void start() {
     if (isRunning) return;
+    if (onStart != null) onStart!();
 
     isRunning = true;
 
@@ -33,7 +36,7 @@ class CountdownTimer extends TimerInterface {
       if (remainingTime.inSeconds <= 1) {
         remainingTime = Duration.zero;
         reset();
-        onComplete();
+        if (onComplete != null) onComplete!();
       } else {
         remainingTime -= const Duration(seconds: 1);
       }
@@ -96,7 +99,6 @@ class CountdownTimerWidget extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

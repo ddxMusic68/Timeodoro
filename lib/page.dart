@@ -30,25 +30,30 @@ class BasePage extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           final restTime = snapshot.data!;
-          return Consumer<CurrentIndex>(
-            builder: (context, currentIndex, child) {
+          return Consumer<AppState>(
+            builder: (context, appState, child) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     title,
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
                   ),
                   CountdownTimerWidget(
                     timer: CountdownTimer(
                       duration: Duration(seconds: restTime),
+                      onStart: () {
+                        appState.toggleRunning();
+                      },
                       onComplete: () {
-                        currentIndex.next();
+                        appState.toggleRunning();
+                        appState.next();
                       },
                     ),
                   ),
-                  Text(instructions, style: TextStyle(fontSize: 16)),
+                  SizedBox(height: 30),
+                  Text(instructions, style: TextStyle(fontSize: 24)),
                 ],
               );
             },

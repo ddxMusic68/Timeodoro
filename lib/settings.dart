@@ -28,7 +28,6 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) { 
     return Column (
-      
         children: [
           TextField(
             controller: pages,
