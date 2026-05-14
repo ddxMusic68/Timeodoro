@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:timodoro/pages/settings.dart';
+import 'package:timodoro/settings.dart';
 import 'package:timodoro/page.dart';
 
 void main() {
