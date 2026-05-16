@@ -91,7 +91,7 @@ class MainApp extends StatelessWidget {
             children: [
               BasePage(
                 title: "Work Time",
-                instructions: "Focus on your task until the timer runs out.",
+                instructions: "Focus on your task",
                 timeKey: "work_time",
                 defaultTime: 20,
               ),

@@ -42,12 +42,12 @@ class BasePage extends StatelessWidget {
                   ),
                   CountdownTimerWidget(
                     timer: CountdownTimer(
-                      duration: Duration(seconds: restTime),
+                      duration: Duration(minutes: restTime),
                       onStart: () {
-                        appState.toggleRunning();
+                        // appState.toggleRunning();
                       },
                       onComplete: () {
-                        appState.toggleRunning();
+                        // appState.toggleRunning();
                         appState.next();
                       },
                     ),
