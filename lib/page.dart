@@ -19,7 +19,7 @@ class BasePage extends StatelessWidget {
   });
 
   Future<int> loadTime() async {
-    final settings = await loadSettings();
+    final settings = await loadSettings('settings.json');
     return settings[timeKey] ?? defaultTime;
   }
 

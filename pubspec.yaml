@@ -9,9 +9,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+    
   provider : ^6.0.5
   path_provider: ^2.0.11
   window_manager: ^0.5.1
+  path: ^1.8.3
 
 dev_dependencies:
   flutter_test:

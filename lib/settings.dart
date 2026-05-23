@@ -71,7 +71,7 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
           ElevatedButton(
             onPressed: () {
-              saveSettings({
+              saveSettings('settings.json', {
                 "screens": int.tryParse(pages.text) ?? 1,
                 "work_time": int.tryParse(workTime.text) ?? 20,
                 "rest_time": int.tryParse(restTime.text) ?? 10,

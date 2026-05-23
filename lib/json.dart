@@ -1,10 +1,11 @@
 import 'dart:io';
 import 'dart:convert';
 import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as p;
 
 void main() async {
-  final settings = await loadSettings();
-  print(settings);
+  // final settings = await loadSettings();
+  // print(settings);
 }
 
 const Map<String, dynamic> defaultSettings = {
@@ -14,14 +15,21 @@ const Map<String, dynamic> defaultSettings = {
   "pages": 1
 };
 
-Future<File> get _localFile async {
-  final directory = await getApplicationDocumentsDirectory();
-  return File('${directory.path}/settings.json');
+Future<File> _localFile(String fileName) async {
+  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+    final exeDir = File(Platform.resolvedExecutable).parent.path;
+    final filePath = p.join(exeDir, fileName);
+    return File(filePath);
+  }
+  else {
+    final directory = await getApplicationDocumentsDirectory();
+    return File('${directory.path}/$fileName');
+  }
 }
 
-Future<Map<String, dynamic>> loadSettings() async {
+Future<Map<String, dynamic>> loadSettings(String fileName) async {
   try {
-    final file = await _localFile;
+    final file = await _localFile(fileName);
 
     if (!await file.exists()) {
       return defaultSettings; // return default settings
@@ -34,8 +42,8 @@ Future<Map<String, dynamic>> loadSettings() async {
   }
 }
 
-Future<void> saveSettings(Map<String, dynamic> json) async {
-  final file = await _localFile;
+Future<void> saveSettings(String fileName, Map<String, dynamic> json) async {
+  final file = await _localFile(fileName);
 
   final jsonString = jsonEncode(json);
 
