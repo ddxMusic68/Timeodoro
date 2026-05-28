@@ -55,3 +55,7 @@ flutter pub get
 ```bash
 flutter run
 ```
+
+## images
+<img width="541" height="442" alt="image" src="https://github.com/user-attachments/assets/7ac55212-8e73-4fcd-8432-fef1d6852b63" />
+
